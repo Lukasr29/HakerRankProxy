@@ -1,5 +1,8 @@
-﻿namespace HakerRankProxy.App.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace HackerRankProxy.App.Models
 {
+    [ExcludeFromCodeCoverage]
     internal class EndpointsConfiguration
     {
         public int UpdateInterval { get; set; }

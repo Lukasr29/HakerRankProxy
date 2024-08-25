@@ -1,8 +1,10 @@
-﻿using HakerRankProxy.App.Converters;
+﻿using HackerRankProxy.App.Converters;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace HakerRankProxy.App.Models
+namespace HackerRankProxy.App.Models
 {
+    [ExcludeFromCodeCoverage]
     [JsonConverter(typeof(StoryJsonConverter))]
     public class Story
     {
@@ -18,6 +20,6 @@ namespace HakerRankProxy.App.Models
 
         public int CommentCount { get; set; }
 
-        public DateTime Timetamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

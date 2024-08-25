@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HakerRankProxy.Api", "HakerRankProxy.Api\HakerRankProxy.Api.csproj", "{889837B7-15E7-434A-BBB7-CA659D0B5C9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerRankProxy.Api", "HackerRankProxy.Api\HackerRankProxy.Api.csproj", "{889837B7-15E7-434A-BBB7-CA659D0B5C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HakerRankProxy.App", "HakerRankProxy.App\HakerRankProxy.App.csproj", "{C5776AFA-5B77-4AFC-9D31-2C7485F9C375}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerRankProxy.App", "HackerRankProxy.App\HackerRankProxy.App.csproj", "{C5776AFA-5B77-4AFC-9D31-2C7485F9C375}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerRankProxy.Tests", "HackerRankProxy.Tests\HackerRankProxy.Tests.csproj", "{4176A465-6D73-4D1D-BFC8-D431188083FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C5776AFA-5B77-4AFC-9D31-2C7485F9C375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5776AFA-5B77-4AFC-9D31-2C7485F9C375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5776AFA-5B77-4AFC-9D31-2C7485F9C375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4176A465-6D73-4D1D-BFC8-D431188083FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4176A465-6D73-4D1D-BFC8-D431188083FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4176A465-6D73-4D1D-BFC8-D431188083FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4176A465-6D73-4D1D-BFC8-D431188083FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

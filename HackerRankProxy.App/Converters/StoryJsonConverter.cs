@@ -1,8 +1,8 @@
-﻿using HakerRankProxy.App.Models;
+﻿using HackerRankProxy.App.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace HakerRankProxy.App.Converters
+namespace HackerRankProxy.App.Converters
 {
     internal class StoryJsonConverter : JsonConverter<Story>
     {
@@ -41,7 +41,7 @@ namespace HakerRankProxy.App.Converters
                             story.CommentCount = reader.GetInt32();
                             break;
                         case "time":
-                            story.Timetamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64()).UtcDateTime;
+                            story.Timestamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64()).UtcDateTime;
                             break;
                     }
                 }
@@ -59,7 +59,7 @@ namespace HakerRankProxy.App.Converters
             writer.WriteString("postedBy", value.PostedBy);
             writer.WriteNumber("score", value.Score);
             writer.WriteNumber("commentsCount", value.CommentCount);
-            writer.WriteString("time", value.Timetamp.ToString("O"));
+            writer.WriteString("time", value.Timestamp.ToString("O"));
 
             writer.WriteEndObject();
         }

@@ -1,11 +1,16 @@
-﻿using HakerRankProxy.App.Models;
-using HakerRankProxy.App.Services;
+﻿using HackerRankProxy.App.Clients;
+using HackerRankProxy.App.Models;
+using HackerRankProxy.App.Services;
+using HackerRankProxy.App.Storage;
+using HackerRankProxy.App.Wrapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
 
-namespace HakerRankProxy.App
+namespace HackerRankProxy.App
 {
+    [ExcludeFromCodeCoverage]
     public static class Bootstrap
     {
         public static void BootstrapHackerRankApp(this IServiceCollection services, IConfiguration configuration)
@@ -14,10 +19,11 @@ namespace HakerRankProxy.App
 
             services.AddDistributedMemoryCache();
             services.AddLogging();
-            services.AddSingleton<Storage.IStorageContainer, Storage.StorageContainer>();
+            services.AddSingleton<IStorageContainer, StorageContainer>();
             services.AddScoped<IHackerRankDataUpdater, HackerRankDataUpdater>();
+            services.AddScoped<IHackerRankHttpWrapper, HackerRankHttpWrapper>();
 
-            services.AddHttpClient<Clients.HackerRankHttpClient>((sp, c) =>
+            services.AddHttpClient<HackerRankHttpClient>((sp, c) =>
             {
                 var endpoints = sp.GetRequiredService<IOptions<EndpointsConfiguration>>();
                 c.BaseAddress = new Uri(endpoints.Value.HackerRank);

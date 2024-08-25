@@ -1,11 +1,11 @@
-﻿using HakerRankProxy.App.Models;
-using HakerRankProxy.App.Services;
+﻿using HackerRankProxy.App.Models;
+using HackerRankProxy.App.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace HakerRankProxy.App.Background
+namespace HackerRankProxy.App.Background
 {
     internal class HackerRankBackgroundUpdater : BackgroundService
     {
@@ -15,9 +15,9 @@ namespace HakerRankProxy.App.Background
 
         public HackerRankBackgroundUpdater(IOptions<EndpointsConfiguration> endpointOptions, IServiceProvider serviceProvider, ILogger<HackerRankBackgroundUpdater> logger)
         {
-            EndpointsConfiguration = endpointOptions?.Value ?? throw new ArgumentException("Could not map endpoints configuration", nameof(endpointOptions));
-            ServiceProvider = serviceProvider ?? throw new ArgumentException(nameof(serviceProvider));
-            Logger = logger ?? throw new ArgumentException(nameof(logger));
+            EndpointsConfiguration = endpointOptions?.Value ?? throw new ArgumentNullException("Could not map endpoints configuration", nameof(endpointOptions));
+            ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+            Logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -28,6 +28,11 @@ namespace HakerRankProxy.App.Background
             {
                 try
                 {
+                    using var loggerScope = Logger.BeginScope(new Dictionary<string, object>
+                    {
+                        { "Process", "Hacker Rank Data Updater" },
+                        { "CorrelationId", Guid.NewGuid().ToString("N") }
+                    });
                     using var scope = ServiceProvider.CreateScope();
                     var hackerRankUpdater = scope.ServiceProvider.GetRequiredService<IHackerRankDataUpdater>();
                     await hackerRankUpdater.Update(stoppingToken);

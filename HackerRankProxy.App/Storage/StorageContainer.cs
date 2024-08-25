@@ -1,10 +1,11 @@
-﻿using HakerRankProxy.App.Models;
+﻿using HackerRankProxy.App.Models;
 
-namespace HakerRankProxy.App.Storage
+namespace HackerRankProxy.App.Storage
 {
     public interface IStorageContainer
     {
         void UpdateBestStories(List<Story> stories);
+        IEnumerable<Story> GetStories(int pageNumber, int pageSize);
         IEnumerable<Story> GetStories(int nBestStories);
     }
 
@@ -17,11 +18,17 @@ namespace HakerRankProxy.App.Storage
             Stories = stories;
         }
 
-        public IEnumerable<Story> GetStories(int nBestStories)
+        public IEnumerable<Story> GetStories(int pageNumber, int pageSize)
         {
             return Stories
                 .OrderByDescending(x => x.Score)
-                .Take(nBestStories);
+                .Skip(pageNumber * pageSize)
+                .Take(pageSize);
+        }
+
+        public IEnumerable<Story> GetStories(int nBestStories)
+        {
+            return GetStories(pageNumber: 0, pageSize: nBestStories);
         }
     }
 }
